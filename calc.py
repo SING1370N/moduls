@@ -4,7 +4,7 @@ import operator, math
 
 @loader.tds
 class CalcMod(loader.Module):
-    strings = {"name": "Cacl",
+    strings = {"name": "Calc",
               "no_term": "<b>Нічого не знайдено</b>"}
     
     @loader.owner
