@@ -82,4 +82,4 @@ class CalcMod(loader.Module):
             close_token()
             return current_value
         
-        await message.edit("COMMAND: " + message)
+        await message.edit("COMMAND: " + message.message)
