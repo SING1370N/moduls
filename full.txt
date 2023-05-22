@@ -1,0 +1,14 @@
+calc
+dice
+google
+heart
+info
+notes
+purge
+quicktype
+spam
+tts
+speedtest
+typer
+userinfo
+yesno
