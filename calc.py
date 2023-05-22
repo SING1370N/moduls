@@ -3,7 +3,7 @@ import operator, math
 
 
 @loader.tds
-class HeartsMod(loader.Module):
+class CalcMod(loader.Module):
     strings = {"name": "Cacl"}
     
     @loader.owner
