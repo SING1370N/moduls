@@ -1,6 +1,4 @@
 from .. import loader
-import operator, math
-
 
 @loader.tds
 class CalcMod(loader.Module):
