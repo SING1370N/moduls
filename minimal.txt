@@ -1,0 +1,12 @@
+info
+dice
+google
+heart
+notes
+purge
+spam
+speedtest
+tts
+typer
+yesno
+userinfo
