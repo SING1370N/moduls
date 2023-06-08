@@ -1,16 +1,26 @@
-from .. import loader
+import ast
+import logging
+
+from .. import loader, utils
+
+logger = logging.getLogger(__name__)
+
 
 @loader.tds
 class CalcMod(loader.Module):
-    strings = {"name": "Calc",
-              "no_term": "<b>Нічого не знайдено</b>"}
-    
-    @loader.owner
+    """Uses speedtest.net"""
+    strings = {"name": "Calculator"}
+
     async def calccmd(self, message):
-        text = utils.get_args_raw(message.message)
-        if not text:
-            text = (await message.get_reply_message()).message
-        if not text:
-            await utils.answer(message, self.strings("no_term", message))
-            return
-        await message.edit("COMMAND: " + text)
+        """Tests your internet speed"""
+        args = utils.get_args(message)
+        try:
+            # Використовуємо функцію `ast.literal_eval` для безпечного виконання виразу
+            result = ast.literal_eval(args)
+        except (ValueError, SyntaxError) as e:
+            logger.error("Error solving math expression: %s", e)
+            await utils.answer(message, "Помилка: некоректний вираз") 
+        except Exception as e:
+            logger.error("Error solving math expression: %s", e)
+            await utils.answer(message, "Помилка при обчисленні виразу")
+        await utils.answer(message, str(result))
