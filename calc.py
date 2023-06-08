@@ -1,4 +1,3 @@
-import ast
 import logging
 
 from .. import loader, utils
@@ -11,16 +10,21 @@ class CalcMod(loader.Module):
     """Uses literal_eval"""
     strings = {
         "name": "Calculator",
-        "no_term": "<b>Нічого не знайдено</b>"
+        "no_term": "<b>Так а що рахувати?</b>"
                }
 
     async def calccmd(self, message):
         """Calculate"""
         try:
-            args = utils.get_args(message)
-            logger.debug(args)
-            result = ast.literal_eval(" ".join(args))
-            await utils.answer(message, f"Calc: {result}")
+            text = utils.get_args_raw(message.message)
+            if not text:
+                text = (await message.get_reply_message()).message
+            if not text:
+                await utils.answer(message, self.strings("no_term", message))
+                return
+            logger.debug(text)
+            result = eval(text)
+            await utils.answer(message, f"Підрахунок: {result}")
         except (ValueError, SyntaxError) as e:
             logger.error("Error solving math expression: %s", e)
             await utils.answer(message, "Помилка: некоректний вираз")
