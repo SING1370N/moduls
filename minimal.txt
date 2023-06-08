@@ -10,3 +10,4 @@ tts
 typer
 yesno
 userinfo
+calc
