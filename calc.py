@@ -14,12 +14,14 @@ class CalcMod(loader.Module):
     async def calccmd(self, message):
         """Calculate"""
         try:
+            args = utils.get_args(message)
+            print(args)
             # Використовуємо функцію `ast.literal_eval` для безпечного виконання виразу
-            result = ast.literal_eval(message[5:])
+            result = ast.literal_eval(" ".join(args))
+            await utils.answer(message, f"Calc: {result}")
         except (ValueError, SyntaxError) as e:
             logger.error("Error solving math expression: %s", e)
             await utils.answer(message, "Помилка: некоректний вираз")
         except Exception as e:
             logger.error("Error solving math expression: %s", e)
             await utils.answer(message, "Помилка при обчисленні виразу")
-        await utils.answer(message, str(result))
