@@ -11,3 +11,4 @@ typer
 yesno
 userinfo
 calc
+morza
