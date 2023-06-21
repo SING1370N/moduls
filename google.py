@@ -47,19 +47,19 @@ class GoogleSearchMod(loader.Module):
             return
 
     async def googlecmd(self, message):
-        self.search_mode(message, GoogleSearch)
+        await self.search_mode(message, GoogleSearch)
 
     async def bingcmd(self, message):
-        self.search_mode(message, BingSearch)
+        await self.search_mode(message, BingSearch)
 
     async def duckcmd(self, message):
-        self.search_mode(message, DuckDuckGoSearch)
+        await self.search_mode(message, DuckDuckGoSearch)
 
     async def yahocmd(self, message):
-        self.search_mode(message, YahooSearch)
+        await self.search_mode(message, YahooSearch)
 
     async def gitcmd(self, message):
-        self.search_mode(message, GithubSearch)
+        await self.search_mode(message, GithubSearch)
 
     async def stackcmd(self, message):
-        self.search_mode(message, StackOverflowSearch)
+        await self.search_mode(message, StackOverflowSearch)
