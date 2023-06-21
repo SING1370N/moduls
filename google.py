@@ -15,14 +15,16 @@ logger = logging.getLogger(__name__)
 
 @loader.tds
 class GoogleSearchMod(loader.Module):
-    """Make a Google search, right in your chat!"""
-    strings = {"name": "Google Search",
+    """Make a search"""
+    strings = {"name": "Search",
                "no_term": "<b>Нічого не знайдено</b>",
                "error": "<b>Сталася дивна помилка, скоріш за все КАПЧА</b>",
                "no_results": "<b>Не вдалося знайти нічого про</b> <code>{}</code> <b>в Google</b>",
                "results": "<b>Це отримано з пошуку Google</b> <code>{}</code>:\n\n",
                "result": "<a href='{}'>{}</a>\n\n<code>{}</code>\n"}
 
+    @loader.unrestricted
+    @loader.ratelimit
     async def search_mode(self, message, CoreSearch):
         text = utils.get_args_raw(message.message)
         if not text:
